@@ -1,0 +1,6 @@
+embedding_dimension: 256
+number_transformer_layers: 6
+number_attention_heads: 8
+number_key_value_heads: 4 # this if for GQA
+maximum_sequence_length: 512
+normalization_epsilon: 1e-5

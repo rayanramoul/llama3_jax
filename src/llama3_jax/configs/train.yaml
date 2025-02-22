@@ -1,0 +1,3 @@
+jax_platform_name = "gpu"
+xla_python_client_preallocate = false
+model: default
