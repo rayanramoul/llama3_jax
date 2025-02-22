@@ -4,7 +4,7 @@ import hydra
 import argparse
 
 
-@hydra.main(config_path="configs", config_name="config")
+@hydra.main(config_path="configs", config_name="train")
 def train(cfg: omegaconf.DictConfig):
     print("Currently Training.")
     print(cfg)
