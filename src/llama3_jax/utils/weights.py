@@ -1,3 +1,4 @@
+from loguru import logger
 import math
 import jax
 
@@ -5,21 +6,20 @@ import jax
 def init_weights(
     random_key: jax.Array, shape: tuple[int], scale: float = None
 ) -> jax.Array:
+    """Function to initialize weights for the model."""
     # calculate default scale if none
     if not scale:
         scale = 1.0 / math.sqrt(shape[0])
-    print("Type of random key:", type(random_key))
     weights = jax.random.normal(random_key, shape) * scale
-    print("Type of weights:", type(weights))
     return weights
 
 
 def init_attention_layer_weights(
     key: jax.Array, dim: int, number_heads: int, number_kv_heads: int
 ) -> dict[str, jax.Array]:
+    """Init weights for the attention layer."""
     # 4 keys one for each of: key, query, value, output
     keys = jax.random.split(key, 4)
-    print(f"Keys: {keys}")
     head_dim = dim // number_heads
     weights = {
         "wq": init_weights(keys[0], (dim, number_heads, head_dim)),
@@ -63,16 +63,20 @@ def init_model_parameters(
     number_heads: int,
     number_kv_heads: int,
 ) -> dict[str, jax.Array | list[dict[str, dict[str, jax.Array] | jax.Array]]]:
+    logger.info("Initializing model parameters.")
     keys = jax.random.split(key, 4)
+    logger.info("Keys generated.")
     params = {
         "token_embedding": init_weights(keys[0], (vocab_size, dim)),
         "norm_f": init_weights(keys[1], (dim,), scale=1.0),  # Final normalization
         "output": init_weights(keys[2], (dim, vocab_size)),
     }
+    logger.info("Token embedding, normalization and output weights initialized.")
     # initialize transformer blocks
     transformers_blocks_keys = jax.random.split(keys[3], number_layers)
     params["transformer_blocks"] = [
         transformer_block_weights(key, dim, number_heads, number_kv_heads)
         for key in transformers_blocks_keys
     ]
+    logger.info("Transformer blocks weights initialized.")
     return params

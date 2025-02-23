@@ -2,7 +2,6 @@ import jax
 import omegaconf
 from rich import print
 import hydra
-import argparse
 from llama3_jax.utils.weights import init_model_parameters
 
 
