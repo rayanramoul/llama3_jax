@@ -1,5 +1,6 @@
 defaults:
   - _self_
-  - model : default
-jax_platform_name : "gpu"
-xla_python_client_preallocate : false
+  - model: default
+jax_platform_name: "gpu"
+xla_python_client_preallocate: false
+seed: 42
