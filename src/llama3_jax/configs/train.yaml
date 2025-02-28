@@ -4,3 +4,7 @@ defaults:
 jax_platform_name: "gpu"
 xla_python_client_preallocate: false
 seed: 42
+steps_per_epoch: 10
+batch_size: 16
+max_seq_len: 128
+num_epochs: 10

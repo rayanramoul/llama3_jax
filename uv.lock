@@ -57,6 +57,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cloudpathlib"
+version = "0.20.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/71/0b/a47d78ed2816db100543b504fdbfc2070f422aac858e6bcf775713e37b8a/cloudpathlib-0.20.0.tar.gz", hash = "sha256:f6ef7ca409a510f7ba4639ba50ab3fc5b6dee82d6dff0d7f5715fd0c9ab35891", size = 45149 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1f/6e/b64600156934dab14cc8b403095a9ea8bd722aad2e775673c68346b76220/cloudpathlib-0.20.0-py3-none-any.whl", hash = "sha256:7af3bcefbf73392ae7f31c08b3660ec31607f8c01b7f6262d4d73469a845f641", size = 52547 },
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -129,6 +138,7 @@ name = "llama3-jax"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "cloudpathlib" },
     { name = "hydra-core" },
     { name = "jax" },
     { name = "jaxlib" },
@@ -139,6 +149,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "cloudpathlib", specifier = ">=0.20.0" },
     { name = "hydra-core", specifier = ">=1.3.2" },
     { name = "jax", specifier = ">=0.5.0" },
     { name = "jaxlib", specifier = ">=0.5.0" },

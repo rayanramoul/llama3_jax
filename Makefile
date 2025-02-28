@@ -1,4 +1,4 @@
-setup:
+install:
 	uv sync
 
 train:
